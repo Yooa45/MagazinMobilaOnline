@@ -1,0 +1,61 @@
+﻿@page
+@model MagazinMobilaOnline.Pages.Oferte.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th> crt
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Oferta[0].Nume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Oferta[0].Reducere)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Oferta[0].DataExpirare)
+            </th>
+            <th>Produs</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var i = 0;
+            foreach (var item in Model.Oferta)
+            {
+                i++;
+                <tr>
+                    <td>@i</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nume)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Reducere)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataExpirare)
+                    </td>
+                    <td>
+                        @item.Produs.Nume
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

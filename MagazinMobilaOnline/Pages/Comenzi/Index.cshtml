@@ -1,0 +1,76 @@
+﻿@page
+@model MagazinMobilaOnline.Pages.Comenzi.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Comanda[0].DataComanda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comanda[0].Client.ClientNume)
+            </th>
+            <th>Produs</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var i = 0;
+            foreach (var item in Model.Comanda)
+            {
+                i++;
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Client.ClientNume)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataComanda)
+                    </td>
+
+                    <td>
+                        @{
+                            foreach (var prod in item.ComandaProduse)
+                            {
+                                <div>@prod.Produs.Nume</div>
+                            }
+                        }
+                    </td>
+
+                    <td>
+                        @{
+                            int sum = 0;
+                            foreach (var prod in item.ComandaProduse)
+                            {
+                                sum += prod.Produs.Pret;
+                            }
+                            <div>
+                                @sum
+                            </div>
+                        }
+                    </td>
+
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
