@@ -7,7 +7,7 @@ namespace MagazinMobilaOnline.Models
     public class Produs
     {
         public int ID { get; set; }
-        [Required, StringLength(150, MinimumLength = 3)]
+        [Required, StringLength(150, MinimumLength = 4)]
 
         public string Nume { get; set; }
         [Range(1, 8000)]

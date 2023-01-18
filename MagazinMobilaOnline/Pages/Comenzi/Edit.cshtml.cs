@@ -67,7 +67,7 @@ namespace MagazinMobilaOnline.Pages.Comenzi
 
             if (await TryUpdateModelAsync<Comanda>(
                 orderToUpdate,
-                "Order",
+                "Comanda",
                 i => i.DataComanda,
                 i => i.ClientID))
             {
